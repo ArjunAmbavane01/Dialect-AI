@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { IconMicrophone } from "@tabler/icons-react";
 
@@ -9,12 +9,19 @@ const SpeechRecognitionComponent = ({setSourceText}) => {
         listening,
         browserSupportsSpeechRecognition
     } = useSpeechRecognition();
+    const [isClient, setIsClient] = useState(false); // Track if the component is running on the client
+
+    useEffect(() => {
+        setIsClient(true); // Set to true once it's mounted on the client
+      }, []);
 
     useEffect(()=>{
-        setSourceText(transcript)
-    },[transcript,setSourceText])
+        if (isClient) {
+      setSourceText(transcript);
+    }
+    },[transcript,setSourceText, isClient])
 
-    if (!browserSupportsSpeechRecognition) {
+    if (!isClient || !browserSupportsSpeechRecognition) {
         return <span>Browser doesn't support speech recognition.</span>;
       }
 
