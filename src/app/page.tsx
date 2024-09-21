@@ -1,17 +1,17 @@
 "use client"
 import "regenerator-runtime/runtime"
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, ChangeEvent } from "react";
 import TextArea from "@/components/Inputs/TextArea";
 import FileUpload from "@/components/Inputs/FileUpload";
+import LanguageSelector from "@/components/Inputs/LanguageSelector";
 import { rtfToText } from "@/utils/rftToText";
 import useTranslate from "@/hooks/UseTranslate";
 import SpeechRecognitionComponent from "@/components/SpeechRecognition/SpeechRecognition";
-import { IconVolume } from "@tabler/icons-react";
+import { IconVolume, IconCopy } from "@tabler/icons-react";
 
 export default function Home() {
   const [sourceText, setSourceText] = useState<string>("");
   const [copied, setCopied] = useState<boolean>(false);
-  const [favourite, setFavourite] = useState<boolean>(false);
   const [languages] = useState<string[]>([
     "English",
     "French",
@@ -43,6 +43,14 @@ export default function Home() {
     }
   };
 
+  const handleCopyToClipboard = () => {
+    navigator.clipboard.writeText(targetText);
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
+  };
+
   return (
     <div>
       <div className="h-[50rem] w-full bg-[#0a0a0a]">
@@ -54,8 +62,7 @@ export default function Home() {
                 <p className=" text-sm tracking-normal mt-3 text-neutral-400">
                   Dialect Ai: Bridging Voices , Connecting People
                 </p>
-
-                <div className="mt-7 sm:mt-12 mx-auto max-w-3xl relative">
+                <div className="mt-7 sm:mt-12 mx-auto max-w-5xl relative">
                   <div className="grid gap-4 md:grid-cols-2 grid-cols-1">
                     <div className="text-lg tracking-normal relative z-10 flex flex-col space-x-3 p-3 border rounded-lg shadow-lg bg-neutral-900 border-neutral-700 shadow-gray-900/20">
 
@@ -68,7 +75,7 @@ export default function Home() {
                         placeholder="Enter your text here"
                       />
 
-                      <div className="flex flex-row justify-between w-full">
+                      <div className="flex flex-row justify-between w-full mt-2">
                         <span className="cursor-pointer flex space-x-2 flex-row">
                           <SpeechRecognitionComponent setSourceText={setSourceText} />
                           <IconVolume size={22} className="cursor-pointer text-gray-400 hover:text-zinc-50" onClick={() => handleAudioPLayback(sourceText)} />
@@ -89,15 +96,21 @@ export default function Home() {
                         placeholder="Translated Text ..."
                       />
 
-                      <div className="flex flex-row justify-between w-full">
+                      <div className="flex flex-row justify-between w-full mt-2">
                         <span className="cursor-pointer flex space-x-2 flex-row items-center">
-                          <SpeechRecognitionComponent setSourceText={setSourceText} />
-                          <IconVolume size={22} className="cursor-pointer text-gray-400 hover:text-zinc-50" onClick={() => handleAudioPLayback(sourceText)} />
-                          <FileUpload handleFileUpload={handleFileUpload} />
+                            <LanguageSelector
+                              selectedLanguage={selectedLanguage}
+                              setSelectedLanguage={setSelectedLanguage}
+                              languages={languages}
+                            />
+                          <IconVolume size={22} className="cursor-pointer text-gray-400 hover:text-zinc-50" onClick={() => handleAudioPLayback(targetText)} />
                         </span>
-                        <span className="text-sm pr-4">
-                          {sourceText.length} / 2000
-                        </span>
+                        <div className="flex flex-row items-center space-x-2 pr-4 cursor-pointer">
+                          <IconCopy size={22} onClick={handleCopyToClipboard} />
+                          {copied && (
+                            <span className="text-xs text-green-500">Copied!</span>
+                          )}
+                        </div>
                       </div>
                     </div>
 

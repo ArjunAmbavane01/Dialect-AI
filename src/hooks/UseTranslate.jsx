@@ -1,20 +1,16 @@
 import {useEffect, useState} from 'react';
-import { configDotenv } from 'dotenv';
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+import { GoogleGenerativeAI } from '@google/generative-ai';
+require('dotenv').config();
 
-configDotenv();
-
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
+const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
 const useTranslate = (sourceText, selectedLanguage) => {
     const [targetText, setTargetText] = useState("");
-
     useEffect(() => {
-        const handleTranlsate = async(sourceText) => {
-            try{
-                
+        const handleTranslate = async (sourceText) => { 
+            if (!sourceText.trim()) return; 
+            try {
                 const prompt = `
                 You will be provided with a sentence. This sentence: 
                 ${sourceText}. Your tasks are to:
@@ -25,18 +21,16 @@ const useTranslate = (sourceText, selectedLanguage) => {
                 const result = await model.generateContent(prompt);
                 const data = result?.response?.text() || 'Error in AI response';
                 setTargetText(data);
-            } catch(error){
-                console.log('Error Translating Text : ',error);
+            } catch (error) {
+                console.log('Error Translating Text : ', error);
             }
+        };
 
-            if(sourceText.trim()){
-                const timeoutId = setTimeout(() => {
-                    handleTranlsate(sourceText);
-                }, 500)
+        const timeoutId = setTimeout(() => {
+            handleTranslate(sourceText);
+        }, 500);
 
-                return () => clearTimeout(timeoutId);
-            }
-        }
+        return () => clearTimeout(timeoutId);
     }, [sourceText, selectedLanguage]);
 
     return targetText;
