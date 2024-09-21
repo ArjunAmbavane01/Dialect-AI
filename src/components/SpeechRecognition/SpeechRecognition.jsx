@@ -1,6 +1,6 @@
-import React,{useEffect} from "react";
+import React, {useEffect} from "react";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import {IconMicrophone} from "@tabler/icons-react";
+import { IconMicrophone } from "@tabler/icons-react";
 
 
 const SpeechRecognitionComponent = ({setSourceText}) => {
@@ -30,7 +30,7 @@ const SpeechRecognitionComponent = ({setSourceText}) => {
         <div>
             <IconMicrophone 
             size={22}
-            className="text-gray-400"
+            className={`cursor-pointer ${listening ? 'text-zinc-50' : 'text-gray-400'} hover:text-zinc-50`}
             onClick={handleVoiceRecording}/>
         </div>
        )

@@ -1,9 +1,10 @@
 "use client"
 import "regenerator-runtime/runtime"
 import TextArea from "@/components/Inputs/TextArea";
+import FileUpload from "@/components/Inputs/FileUpload";
 import SpeechRecognitionComponent from "@/components/SpeechRecognition/SpeechRecognition";
-import { IconFileUpload, IconVolume } from "@tabler/icons-react";
-import React,{ useState, useEffect, ChangeEvent } from "react";
+import { IconVolume } from "@tabler/icons-react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 
 export default function Home() {
   const [sourceText, setSourceText] = useState<string>("");
@@ -12,6 +13,10 @@ export default function Home() {
     const utterance = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(utterance);
   }
+
+  const handleFileUpload = (e: ChangeEvent<HTMLInputElement>) => {
+    
+  };
 
   useEffect(() => {
     // Any client-side only code can go here
@@ -31,7 +36,8 @@ export default function Home() {
 
                 <div className="mt-7 sm:mt-12 mx-auto max-w-3xl relative">
                   <div className="grid gap-4 md:grid-cols-2 grid-cols-1">
-                    <div className=" text-lg tracking-normal relative z-10 flex flex-col space-x-3 border rounded-lg shadow-lg bg-neutral-900 border-neutral-700 shadow-gray-900/20">
+                    <div className="text-lg tracking-normal relative z-10 flex flex-col space-x-3 p-3 border rounded-lg shadow-lg bg-neutral-900 border-neutral-700 shadow-gray-900/20">
+
                       <TextArea 
                         id="source-language"
                         value={sourceText} 
@@ -40,13 +46,14 @@ export default function Home() {
                         }} 
                         placeholder="Enter your text here"
                       />
+
                       <div className="flex flex-row justify-between w-full">
                         <span className="cursor-pointer flex space-x-2 flex-row">
                           {typeof window !== 'undefined' && (
                             <SpeechRecognitionComponent setSourceText={setSourceText}/>
-                          )}
-                          <IconVolume size={22} className="text-gray-400" onClick={() => handleAudioPLayback(sourceText)}/>
-                          <IconFileUpload />
+                           )} 
+                          <IconVolume size={22} className="cursor-pointer text-gray-400 hover:text-zinc-50" onClick={() => handleAudioPLayback(sourceText)}/>
+                          <FileUpload handleFileUpload={handleFileUpload} />
                         </span>
                       </div>
                     </div>
