@@ -21,6 +21,7 @@ const config: Config = {
   },
   plugins: [
     require("preline/plugin"),
+    require('tailwind-scrollbar'),
   ],
 };
 export default config;

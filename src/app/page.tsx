@@ -1,6 +1,6 @@
 "use client"
 import "regenerator-runtime/runtime"
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, memo } from "react";
 import TextArea from "@/components/Inputs/TextArea";
 import FileUpload from "@/components/Inputs/FileUpload";
 import LanguageSelector from "@/components/Inputs/LanguageSelector";
@@ -8,6 +8,9 @@ import { rtfToText } from "@/utils/rftToText";
 import useTranslate from "@/hooks/UseTranslate";
 import SpeechRecognitionComponent from "@/components/SpeechRecognition/SpeechRecognition";
 import { IconVolume, IconCopy } from "@tabler/icons-react";
+import { SparklesCore } from "@/components/ui/sparkles";
+
+const SparklesCoreMemoized = memo(SparklesCore);
 
 export default function Home() {
   const [sourceText, setSourceText] = useState<string>("");
@@ -53,15 +56,29 @@ export default function Home() {
 
   return (
     <div>
-      <div className="h-[50rem] w-full bg-[#0a0a0a]">
+      <div className="h-full overflow-hidden w-full bg-[#0a0a0a]">
         <div className="relative overflow-hidden h-screen">
           <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-24">
-            <div className="text-center">
-              <h1 className="text-4xl font-bold tracking-tight text-neutral-200 sm:text-6xl">
+            <div className="text-center mt-[-65px]">
+              <h1 className="text-7xl font-bold tracking-tight text-neutral-200 sm:text-7xl">
                 Dialect<span className="text-[#f87315]">AI</span>
-                <p className=" text-sm tracking-normal mt-3 text-neutral-400">
+                <p className="text-base tracking-normal mt-3 text-neutral-400">
                   Dialect Ai: Bridging Voices , Connecting People
                 </p>
+
+                <div className="w-full h-40 relative">
+                <SparklesCoreMemoized
+                  background="transparent"
+                  minSize={0.8}
+                  maxSize={1}
+                  particleDensity={1200}
+                  className="w-full h-full mt-1"
+                  particleColor="#FFFFFF"
+                />
+                <div className="absolute inset-0 w-full h-full bg-[#0a0a0a] [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
+              </div>
+
+
                 <div className="mt-7 sm:mt-12 mx-auto max-w-5xl relative">
                   <div className="grid gap-4 md:grid-cols-2 grid-cols-1">
                     <div className="text-lg tracking-normal relative z-10 flex flex-col space-x-3 p-3 border rounded-lg shadow-lg bg-neutral-900 border-neutral-700 shadow-gray-900/20">
@@ -117,6 +134,7 @@ export default function Home() {
                   </div>
                 </div>
               </h1>
+              <p className="mt-7 text-white text-sm">Created with ❤️ by Arjun</p>
             </div>
           </div>
         </div>
