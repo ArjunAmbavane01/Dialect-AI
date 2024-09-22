@@ -26,10 +26,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - **Text Translation**: Translates recognized text into a selected target language using OpenAI's GPT-4 model.
 - **Audio Playback**: Converts translated text back into speech using the Web Speech API's speech synthesis.
 - **File Upload**: Reads and translates text from uploaded files, including RTF to plain text conversion.
-- **Link Content Fetching**: Fetches and translates text content from provided URLs.
 - **Language Selection**: Allows users to select target languages for translation.
 - **Copy to Clipboard**: Copies the translated text to the clipboard.
-- **User Interaction**: Like, Dislike, and Favorite features for translations.
 - **Responsive Design**: Ensures a seamless experience across different devices.
 
 ## Quick Start
@@ -42,8 +40,8 @@ Make sure you have the following installed on your machine:
 
 ### Cloning the Repository
 ```bash
-git clone https://github.com/mendsalbert/lingua-speak.git
-cd linguaspeak
+git clone https://github.com/ArjunAmbavane01/Dialect-AI.git
+cd Dialect-AI
 ```
 
 ### Installation
@@ -55,7 +53,7 @@ npm install
 ### Set Up Environment Variables
 Create a new file named `.env` in the root of your project and add the following content:
 ```
-NEXT_PUBLIC_API_KEY=your-openai-api-key
+NEXT_PUBLIC_API_KEY=your-api-key
 ```
 
 Replace the placeholder value with your actual OpenAI credentials. You can obtain these credentials by signing up on the OpenAI website.
