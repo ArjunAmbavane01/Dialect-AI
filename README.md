@@ -6,10 +6,10 @@ DialectAI is an innovative web application designed to bridge language barriers 
 # Project Screenshots
 
 ## Screenshot 1
-![Screenshot 1](@image1.png)
+![Screenshot 1](./READMEassets/image1.png)
 
 ## Screenshot 2
-![Screenshot 2](@image2.png)
+![Screenshot 2](./READMEassets/image2.png)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
