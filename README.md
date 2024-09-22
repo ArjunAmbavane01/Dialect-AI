@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DialectAI
 
-## Getting Started
+## Description
+DialectAI is an innovative web application designed to bridge language barriers and enhance communication across cultures. By leveraging advanced AI technologies, it provides users with seamless text translation, speech recognition, and audio playback features. Whether you're a traveler, a student, or simply someone looking to connect with others, DialectAI empowers you to express yourself in multiple languages effortlessly.
 
-First, run the development server:
+## Tech Stack
+- **Next.js**: A powerful React framework for building server-rendered applications.
+- **TypeScript**: A superset of JavaScript that adds static types, enhancing code quality and maintainability.
+- **OpenAI API**: Utilizes cutting-edge AI models for natural language processing and translation.
+- **React Speech Recognition**: Integrates speech recognition capabilities for a hands-free experience.
+- **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
 
+## Features
+- **Speech Recognition**: Converts spoken words into text using the Web Speech API.
+- **Text Translation**: Translates recognized text into a selected target language using OpenAI's GPT-4 model.
+- **Audio Playback**: Converts translated text back into speech using the Web Speech API's speech synthesis.
+- **File Upload**: Reads and translates text from uploaded files, including RTF to plain text conversion.
+- **Link Content Fetching**: Fetches and translates text content from provided URLs.
+- **Language Selection**: Allows users to select target languages for translation.
+- **Copy to Clipboard**: Copies the translated text to the clipboard.
+- **User Interaction**: Like, Dislike, and Favorite features for translations.
+- **Responsive Design**: Ensures a seamless experience across different devices.
+
+## Quick Start
+
+### Prerequisites
+Make sure you have the following installed on your machine:
+- **Git**
+- **Node.js**
+- **npm (Node Package Manager)**
+
+### Cloning the Repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/mendsalbert/lingua-speak.git
+cd linguaspeak
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
+Install the project dependencies using npm:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Set Up Environment Variables
+Create a new file named `.env` in the root of your project and add the following content:
+```
+NEXT_PUBLIC_API_KEY=your-openai-api-key
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Replace the placeholder value with your actual OpenAI credentials. You can obtain these credentials by signing up on the OpenAI website.
 
-## Learn More
+### Running the Project
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the project.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Acknowledgments
+Created with ❤️ by Arjun
